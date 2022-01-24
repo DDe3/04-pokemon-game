@@ -1,41 +1,68 @@
 <template>
+  <img :src="enlace" alt="Not found" />
   <div class="contenedor-opciones">
-    <ul>
-      <li>Pokemon 1</li>
-      <li>Pokemon 2</li>
-      <li>Pokemon 3</li>
-      <li>Pokemon 4</li>
-    </ul>
+    <input type="text" placeholder="Ingrese un ID de Pokemon" v-model="nid" />
+    <button @click="consultarPokemon">Consultar</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "PokemonOpciones",
+  //"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+
+  props: {
+    url: {
+      type: String,
+      default: null,
+    },
+    id: {
+      type: Number,
+      default: null,
+    },
+  },
+
+  data() {
+    return {
+      enlace: this.url,
+      nid: this.id
+    }
+  },
+
+  computed: {
+    consultarPokemon() {
+      console.log("Este es el id: " + this.id);
+      this.enlace =
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/" +
+        this.nid +
+        ".svg";
+    },
+  },
 };
 </script>
 
 <style>
-li {
-  border: 1px solid;
-  border-radius: 20px;
-  background-color: white;
-  width: 250px;
-  margin-bottom: 5px;
+button {
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-li:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+input,
+button {
+  margin-right: 5px;
+  border-radius: 5px;
 }
 
-ul {
-  list-style-type: none;
+button:hover {
+  background-color: aqua;
 }
 
 .contenedor-opciones {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
+img {
+  margin: 20px;
+}
 </style>
