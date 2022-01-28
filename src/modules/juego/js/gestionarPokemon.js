@@ -1,6 +1,8 @@
-const obtenerPokemonOpciones = () => {
-    console.log("Metodo de Opciones")
-    getPokemon()
+const obtenerPokemonOpciones = async () => {
+
+    const nombres = await getPokemon()
+    console.log(nombres)
+    return nombres
 }
 
 const getPokemon = async () => {
@@ -9,7 +11,7 @@ const getPokemon = async () => {
         arregloPokemon.push(getRandomInt(650))
     }
     const nombres = await obtenerNombres(arregloPokemon)
-    console.table(nombres)
+    return nombres
 
 }
 

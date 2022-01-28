@@ -1,10 +1,9 @@
 <template>
   <div class="contenedor-opciones">
     <ul>
-      <li>Pokemon 1</li>
-      <li>Pokemon 2</li>
-      <li>Pokemon 3</li>
-      <li>Pokemon 4</li>
+      <li v-for="p in pokemons" :key="p.id" @click="$emit('seleccion', p.id)">
+        {{p.nombre}}
+      </li>
     </ul>
   </div>
 </template>
@@ -12,6 +11,12 @@
 <script>
 export default {
   name: "PokemonOpciones",
+  props: {
+    pokemons:  {
+      type: Array,
+      required: true
+    }
+  }
 };
 </script>
 
